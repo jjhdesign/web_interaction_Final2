@@ -753,8 +753,8 @@
          ctx.font = "300 11px Antonio, Cafe24ProSlim";
          ctx.textAlign = "right";
          ctx.textBaseline = "middle";
-         // 하단 그래프에서는 br 태그를 제거하고 공백으로 변환
-         const displayName = item.name.replace(/<\/?br\s*\/?>/gi, ' ');
+         // 하단 그래프에서는 br 태그를 제거하고 공백으로 변환 (연속된 공백은 하나로 합침)
+         const displayName = item.name.replace(/<\/?br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
          ctx.fillText(displayName, leftMargin - 10, y + barHeight / 2);
          ctx.restore();
        });
@@ -868,4 +868,3 @@
 </body>
 
 </html>
-
